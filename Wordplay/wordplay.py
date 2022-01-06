@@ -2,6 +2,8 @@
 
 in_file = open("sowpods.txt", "r")
 
+# For loops and if conditions
+
 # What are all of the words containing UU?
 # for words in in_file:
 #     if("UU" in words):
@@ -99,3 +101,29 @@ in_file = open("sowpods.txt", "r")
 #     and "O" in words and "U" in words):
 #         check_vowels(words)
 # in_file.seek(0)
+
+# Setting up storage to use during a for loop, including counters and arrays
+
+# How many words contain the substring "TYPE”?
+# type_cnt = 0
+# for words in in_file:
+#     if("TYPE" in words):
+#         type_cnt += 1
+# print(type_cnt)
+# in_file.seek(0)
+
+# Create and print an array containing all of the words that end in "GHTLY"
+# ghtly_arr = []
+# for words in in_file:
+#     word_len = len(words) - 1 # -1 for escape character
+#     # Check if word is elibible to meet conditions
+#     if("GHTLY" not in words):
+#         continue
+#     # Check if last 5 chars of word contain 'GHTLY'
+#     elif(words[word_len - 5: word_len] != "GHTLY"):
+#         continue
+#     # If all checks passed, append to list
+#     ghtly_arr.append(words)
+# print(ghtly_arr, end="")
+# in_file.seek(0)
+
