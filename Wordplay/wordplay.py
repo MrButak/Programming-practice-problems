@@ -1,6 +1,5 @@
 # Python 3.7.3
 import string
-from os import kill
 
 
 in_file = open("sowpods.txt", "r")
@@ -203,9 +202,8 @@ in_file = open("sowpods.txt", "r")
 #         if(dbls_list[i] in words):
 #             dbls_dict[dbls_list[i]] += 1
 # # Print results            
-# no_repeat = []
 # for key,value in dbls_dict.items():
-#     if value == 0:
-#         no_repeat.append(key)
-# print(no_repeat)
-# in_file.seek(0)
+#     if(value == 0):
+#         print(key)
+
+    
