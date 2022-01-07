@@ -1,8 +1,9 @@
 # Python 3.7.3
+import string
+from os import kill
+
 
 in_file = open("sowpods.txt", "r")
-
-# For loops and if conditions
 
 # What are all of the words containing UU?
 # for words in in_file:
@@ -102,8 +103,6 @@ in_file = open("sowpods.txt", "r")
 #         check_vowels(words)
 # in_file.seek(0)
 
-# Setting up storage to use during a for loop, including counters and arrays
-
 # How many words contain the substring "TYPE”?
 # type_cnt = 0
 # for words in in_file:
@@ -127,3 +126,86 @@ in_file = open("sowpods.txt", "r")
 # print(ghtly_arr, end="")
 # in_file.seek(0)
 
+# What is the shortest word that contains all 5 vowels?
+# short_vowels = []
+# for words in in_file:
+#     if("A" in words and "E" in words and "I" in words and "O" in words
+#     and "U" in words):
+#         short_vowels.append(words)
+# print(min(short_vowels), end="")
+# in_file.seek(0)
+
+# What is the longest word that contains no vowels?
+# long_consonant = []
+# for words in in_file:
+#     if("A" not in words and "E" not in words and "I" not 
+#     in words and "O" not in words and "U" not in words):
+#         long_consonant.append(words)
+# print(max(long_consonant), end="")
+# in_file.seek(0)
+
+# Which of the letters Q, X, and Z is the least common?
+# least_common = {
+#     "q": 0,
+#     "x": 0,
+#     "z": 0
+# }
+# for words in in_file:
+#     # check if word contains Q, X, or Z
+#     if("Q" in words or "X" in words or "Z" in words):
+#         for chars in words:
+#             if(chars == "Q"):
+#                 least_common["q"] += 1
+#             elif(chars == "X"):
+#                 least_common["x"]+= 1
+#             elif(chars == "Z"):
+#                 least_common["z"] += 1
+# print(min(least_common))
+# in_file.seek(0)
+
+# What is the longest palindrome?
+# def check_palindrome(word):
+#     word_reversed = []
+#     # make a new list with the word reversed
+#     for i in range(len(word) - 1):
+#         word_reversed.insert(0, word[i])
+#     # compare the word and the word reversed
+#     for i in range(len(words) - 1):
+#         if(word_reversed[i] != word[i]):
+#             return 
+#     # if word and word reversed are the same, append to a list
+#     palindromes.append(word)
+
+# palindromes = []
+# for words in in_file:
+#     # lenght of word -2 to calculate last index of char in string with escape character
+#     word_index_end = len(words) - 2
+#     # first check if first and last char match
+#     if(words[0] == words[word_index_end]):
+#         check_palindrome(words)
+# print(max(palindromes, key=len))
+# in_file.seek(0)
+
+
+# What are all of the letters that never appear consecutively in an English word? For 
+# example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that “A” isn’t 
+# an answer, because of “AARDVARK”, but which letters never appear consecutively?
+
+# alpha = string.ascii_uppercase
+# dbls_dict = {}
+# dbls_list = []
+# for i in range(25):
+#     dbls_dict[alpha[i] + alpha[i]] = 0
+#     dbls_list.append(alpha[i] + alpha[i])
+
+# for words in in_file:
+#     for i in range(25):
+#         if(dbls_list[i] in words):
+#             dbls_dict[dbls_list[i]] += 1
+# # Print results            
+# no_repeat = []
+# for key,value in dbls_dict.items():
+#     if value == 0:
+#         no_repeat.append(key)
+# print(no_repeat)
+# in_file.seek(0)
