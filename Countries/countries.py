@@ -1,7 +1,4 @@
 
-from os import remove
-
-
 in_file = open("countries.txt", "r")
 
 # What are all of the countries that have “United” in the name?
