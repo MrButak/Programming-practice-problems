@@ -1,3 +1,5 @@
+import time
+
 in_file = open("baby_names_2020_short.txt", "r")
 scrabble_file = open("../Wordplay/sowpods.txt", "r")
 # What is the shortest baby name in the top 40 baby names for 2020?
@@ -30,48 +32,59 @@ scrabble_file = open("../Wordplay/sowpods.txt", "r")
 
 # Solution 1
 
+start_time = time.time()
 # Create a list with baby names reversed
-# bn_reversed = []
-# for words in in_file:
-#     bn_reversed.append(words[::-1].lower().strip())
-# # Create a list of Scrabble words
-# scrabble_list = []
-# for words in scrabble_file:
-#     scrabble_list.append(words.lower().strip())
+bn_reversed = []
+for words in in_file:
+    bn_reversed.append(words[::-1].lower().strip())
+# Create a list of Scrabble words
+scrabble_list = []
+for words in scrabble_file:
+    scrabble_list.append(words.lower().strip())
 
-# # Compare each reversed baby name against each scrabble word
-# for i in range(len(bn_reversed)):
-#     for j in range(len(scrabble_list)):
-#         if(bn_reversed[i] == scrabble_list[j]):
-#             print(scrabble_list[j])
-# # Move pointer back to start of file (it should be already, but just in case)            
-# in_file.seek(0)
-# scrabble_file.seek(0)
+# Compare each reversed baby name against each scrabble word
+for i in range(len(bn_reversed)):
+    for j in range(len(scrabble_list)):
+        if(bn_reversed[i] == scrabble_list[j]):
+            print(scrabble_list[j])
+# Move pointer back to start of file (it should be already, but just in case)            
+in_file.seek(0)
+scrabble_file.seek(0)
+
+# Print out the time it took to complete execution of code
+execution_time = (time.time() - start_time)
+print(f"Solution 1 (list) took {execution_time} seconds")
 
 # Solution 2
 
+start_time = time.time()
 # Create a dict with all scrabble words and set values to 0
-# scrabble_dict = {}
-# for words in scrabble_file:
-#     scrabble_dict[words.lower().strip()] = 0
+scrabble_dict = {}
+for words in scrabble_file:
+    scrabble_dict[words.lower().strip()] = 0
 
-# # Create a list with baby names reversed
-# bn_reversed = []
-# for words in in_file:
-#     bn_reversed.append(words[::-1].lower().strip())
+# Create a list with baby names reversed
+bn_reversed = []
+for words in in_file:
+    bn_reversed.append(words[::-1].lower().strip())
 
-# # Compare each reversed baby name against each scrabble word
-# for i in range(len(bn_reversed)):
-#     for keys in scrabble_dict.keys():
-#         if(bn_reversed[i] == keys):
-#             print(bn_reversed[i])
+# Compare each reversed baby name against each scrabble word
+for i in range(len(bn_reversed)):
+    for keys in scrabble_dict.keys():
+        if(bn_reversed[i] == keys):
+            print(bn_reversed[i])
 
 # # Move pointer back to start of file (it should be already, but just in case)            
 in_file.seek(0)
 scrabble_file.seek(0)
 
+# Print out the time it took to complete execution of code
+execution_time = (time.time() - start_time)
+print(f"Solution 2 (dict) took {execution_time} seconds")
+
 # Solution 2.5
 
+start_time = time.time()
 # Create a set with all scrabble words and set values to 0
 scrabble_set = {""}
 for words in scrabble_file:
@@ -92,9 +105,6 @@ for i in range(len(bn_reversed)):
 in_file.seek(0)
 scrabble_file.seek(0)
 
-
-
-    
-
-
-
+# Print out the time it took to complete execution of code
+execution_time = (time.time() - start_time)
+print(f"Solution 3 (set) took {execution_time} seconds")
