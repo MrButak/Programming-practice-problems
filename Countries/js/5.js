@@ -10,14 +10,12 @@ let main = () => {
     let vowel_arry = [];
     let single_vowel = [];
 
+    // Function collects all vowels which appear in a word
     let find_vowels = (word) => {
 
         vowel_arry = [];
-
         for(let i = 0; i < word.length; i++) {
-
             for(let j = 0; j < vowels.length; j++) {
-
                 if(word[i] == vowels[j]) {
                     vowel_arry.push(vowels[j]);
                 };
