@@ -1,8 +1,11 @@
 // method 2 I should hash values from a word?
 // for every letter not in a word I'll have to calculate some value?
 
+const { exit } = require("process");
+
 
 let user_pieces = {};
+let user_pieces_cpy = [];
 let word_letters = {};
 let word_letter_arry = [];
 let possible_words = {};
@@ -18,7 +21,9 @@ let make_user_pieces = (user_word) => {
     };
     for(let i = 0; i < user_word.length; i++) {
         user_pieces[user_word[i].toLowerCase()] += 1;
-    };  
+    };
+    user_pieces_cpy.push(user_pieces);
+    return;
 }
 
 let make_word_letters = (word) => {
@@ -35,7 +40,7 @@ let make_word_letters = (word) => {
 };
 
 let check_match = () => {
-    
+   
     for(let i = 0; i < word_letter_arry.length; i++) {
         if(user_pieces[word_letter_arry[i]] == null) {
             return false;
@@ -46,14 +51,26 @@ let check_match = () => {
         user_pieces[word_letter_arry[i]]--;
     };
     for(let i = 0; i < word_letter_arry.length; i++) {
-        if(user_pieces[word_letter_arry[i]] < 0) {
+        if(user_pieces[word_letter_arry[i]] < 0 ||
+            user_pieces[word_letter_arry[i] == null]) {
             return false;
         };
     };
 
-    return true;
+    return true; 
+};
 
-  
+let calculate_score = (word) => {
+
+    let score_cnt = 0;
+
+    for(let i = 0; i < word.length; i++) {
+        score_cnt += scores[word[i].toLowerCase()];
+    };
+
+    possible_words[word] = score_cnt;
+
+    
 };
 
 let main = () => {
@@ -64,19 +81,15 @@ let main = () => {
     
 
     
+    // Main function calls
     for(let i = 0; i < in_file.length; i++) {
-        make_user_pieces("shcstoeebbasar");
-        make_word_letters(in_file[33]);
+        make_user_pieces("SPCQEIU");
+        make_word_letters(in_file[i]);
         if(check_match()) {
-            console.log(in_file[i]);
+            calculate_score(in_file[i]);
         };
     };
-    
-
-    // console.log("user word");
-    // console.table(user_pieces)
-    // console.log("scrabble word");
-    // console.table(word_letters)
+    console.table(possible_words);
 
 
 };
