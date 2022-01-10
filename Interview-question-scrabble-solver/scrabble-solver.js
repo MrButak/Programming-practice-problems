@@ -17,7 +17,6 @@ let make_user_pieces = (user_word) => {
     for(let i = 0; i < user_word.length; i++) {
         user_pieces[user_word[i].toLowerCase()] += 1;
     };
-    user_pieces_cpy.push(user_pieces);
     return;
 };
 
@@ -42,7 +41,8 @@ let check_match = () => {
     // 1. first find tile with highest score value with a user_pieces value of 1 (blank tile)
     // 2. NULL value to all other tiles values (except the one with highest value and a user_pieces
        // value of 1
-    // 2a. if another tiles score value is higher and is > 0 after comparison, I can use that
+    // 2a. if another tiles score value is higher and user_pieces is > 0 after comparison, 
+        // I can use that
     // 3. profit
 
     for(let i = 0; i < word_letter_arry.length; i++) {
@@ -85,7 +85,7 @@ let main = () => {
     // Main function calls
     
     for(let i = 0; i < in_file.length; i++) {
-        make_user_pieces("yohana");
+        make_user_pieces("kathryn");
         make_word_letters(in_file[i]);
         if(check_match()) {
             calculate_score(in_file[i]);
