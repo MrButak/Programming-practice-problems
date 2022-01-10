@@ -1,7 +1,3 @@
-// method 2 I should hash values from a word?
-// for every letter not in a word I'll have to calculate some value?
-
-const { exit } = require("process");
 
 let user_pieces = {};
 let user_pieces_cpy = [];
