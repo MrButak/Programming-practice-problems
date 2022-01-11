@@ -1,4 +1,3 @@
-const { exit } = require("process");
 
 let user_letters = "";
 let user_pieces = {};
