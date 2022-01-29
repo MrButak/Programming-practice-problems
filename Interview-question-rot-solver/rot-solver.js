@@ -64,11 +64,13 @@ let shiftCharLeft = (str, num, isUpper) => {
     };
 };
 
+
 // Main function calls
 let main = () => {
 
-    inputStr = "Hello, Rick";
+    inputStr = "Hello, there Buddy!";
     inputNum = 1;
+
     let pos;
     let isUpper;
     let rotArry = [];
