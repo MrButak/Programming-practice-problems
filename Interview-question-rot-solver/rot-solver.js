@@ -44,7 +44,7 @@ let shiftCharLeft = (str, num, isUpper) => {
         
         for(let i = 0; i < num; i++) {
 
-            if(str > 66) {
+            if(str > 65) {
                 str--;
             }
             else {
@@ -68,8 +68,20 @@ let shiftCharLeft = (str, num, isUpper) => {
 // Main function calls
 let main = () => {
 
-    inputStr = "Hello, there Buddy!";
-    inputNum = 1;
+    // Test Cases *******************************************
+
+    // ("HELLO", 1) -> "IFMMP" shift right by 1
+    // ("HELLO", 2) -> "JGNNQ" shift right by 2
+    // ("HELLO", -1) -> "GDKKN" shift left by 1
+    // ("HELLO", 27) -> "IFMMP" shift right by 27
+    
+    // ("hello", 88) -> "rovvy" shift right by 88
+    // ("Hey How's it going?", -22) -> shift left by 22 "Lic Lsa'w mx ksmrk?"
+    // ("Let's wrap this bad boy around a few times!!!!!!", -68) -> shift left by 68 "Vod'c gbkz drsc lkn lyi kbyexn k pog dswoc!!!!!!"
+
+    
+    inputStr = "Let's wrap this bad boy around a few times!!!!!!";
+    inputNum = -68;
 
     let pos;
     let isUpper;

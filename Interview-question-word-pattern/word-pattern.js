@@ -1,4 +1,3 @@
-
 let assignToObj = (pattern, str, obj) => {
 
     obj[pattern] = str;
