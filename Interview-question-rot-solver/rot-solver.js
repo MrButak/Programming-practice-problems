@@ -64,6 +64,7 @@ let shiftCharLeft = (str, num, isUpper) => {
 
 
 // Main function calls
+
 let rotate = (inputStr, inputNum) => {
 
     let pos;
