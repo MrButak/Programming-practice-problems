@@ -36,8 +36,6 @@ let shiftCharLeft = (str, num, isUpper) => {
 
     // convert negative number to positive
     num = Math.abs(num);
-   
-    // console.log({str}, {num})
 
     // if character needs to wrap (shifting will move before 'A')
     if(str - num < 65) {
@@ -66,22 +64,7 @@ let shiftCharLeft = (str, num, isUpper) => {
 
 
 // Main function calls
-let main = () => {
-
-    // Test Cases *******************************************
-
-    // ("HELLO", 1) -> "IFMMP" shift right by 1
-    // ("HELLO", 2) -> "JGNNQ" shift right by 2
-    // ("HELLO", -1) -> "GDKKN" shift left by 1
-    // ("HELLO", 27) -> "IFMMP" shift right by 27
-    
-    // ("hello", 88) -> "rovvy" shift right by 88
-    // ("Hey How's it going?", -22) -> shift left by 22 "Lic Lsa'w mx ksmrk?"
-    // ("Let's wrap this bad boy around a few times!!!!!!", -68) -> shift left by 68 "Vod'c gbkz drsc lkn lyi kbyexn k pog dswoc!!!!!!"
-
-    
-    inputStr = "Let's wrap this bad boy around a few times!!!!!!";
-    inputNum = -68;
+let rotate = (inputStr, inputNum) => {
 
     let pos;
     let isUpper;
@@ -114,7 +97,16 @@ let main = () => {
         
        
     };
-    console.log(rotArry.join(""))
+    return(rotArry.join(""))
 };
 
-main();
+let main = () => {
+    console.assert(rotate("HELLO", 1) === "IFMMP");
+    console.assert(rotate("HELLO", 2) === "JGNNQ");
+    console.assert(rotate("HELLO", -1) === "GDKKN");
+    console.assert(rotate("hello", 88) === "rovvy");
+    console.assert(rotate("Hey How's it going?", -22) === "Lic Lsa'w mx ksmrk?");
+    console.assert(rotate("Let's wrap this bad boy around a few times!!!!!!", -68) === "Vod'c gbkz drsc lkn lyi kbyexn k pog dswoc!!!!!!");
+}
+
+main()
