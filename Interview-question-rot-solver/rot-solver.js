@@ -1,99 +1,120 @@
+let shiftCharRight = (str, num, isUpper) => {
+    
+    // if char is lowercase, temporarily conver to upper
+    if(!isUpper) {str -= 32};
+    
+    // if character needs to wrap (shifting will move past 'Z')
+    if(str + num > 90) {
+        
+        for(let i = 0; i < num; i++) {
 
-let ascii_obj = {};
-
-
-let create_alpha = () => {
-
-    for(let i = 0; i < 26; i++) {
-        ascii_obj[String.fromCharCode(i + 65)] = i + 65;
-        ascii_obj[String.fromCharCode(i + 97)] = i + 97;
-    };
-    return;
-};
-
-let shift_lower = (char, shift_amt) => {
-
-    let shift = 0;
-    // for shift to right
-    if(shift_amt > 0) {
-             
-        if(ascii_obj[char] + shift_amt > 122) {
-            shift = (ascii_obj[char] - 26) + shift_amt;
-            return(String.fromCharCode(shift))
-        }
-        else {
-            return(String.fromCharCode(ascii_obj[char] + shift_amt));
+            if(str < 90) {
+                str++;
+            }
+            else {
+                str -= 25;
+            };
         };
+
+        // convert back to lowercase if needed
+        if(!isUpper) {str += 32};
+        return(String.fromCharCode(str));
     }
-    // shift left
+
+    // if character does not need to wrap
     else {
-
-        shift = 0;
-
-        if(ascii_obj[char] - Math.abs(shift_amt) < 97) {
-            shift = (ascii_obj[char] - shift_amt) - shift_amt;
-            return(String.fromCharCode(shift))
-        }
-        else {
-            return(String.fromCharCode(ascii_obj[char] - Math.abs(shift_amt)));
-        };
+        if(!isUpper) {str += 32};
+        return(String.fromCharCode(str + num));
     };
-    
-    
 };
 
-let shift_upper = (char, shift_amt) => {
 
-    let shift = 0;
-    // for shift to right
-    if(shift_amt > 0) {
-             
-        if(ascii_obj[char] + shift_amt > 90) {
-            shift = (ascii_obj[char] - 26) + shift_amt;
-            return(String.fromCharCode(shift))
-        }
-        else {
-            return(String.fromCharCode(ascii_obj[char] + shift_amt));
+let shiftCharLeft = (str, num, isUpper) => {
+    
+    // if char is lowercase, temporarily conver to upper
+    if(!isUpper) {str -= 32};
+
+    // convert negative number to positive
+    num = Math.abs(num);
+   
+    // console.log({str}, {num})
+
+    // if character needs to wrap (shifting will move before 'A')
+    if(str - num < 65) {
+        
+        for(let i = 0; i < num; i++) {
+
+            if(str > 65) {
+                str--;
+            }
+            else {
+                str += 25;
+            };
         };
+
+        // convert back to lowercase if needed
+        if(!isUpper) {str += 32};
+        return(String.fromCharCode(str));
     }
-    // shift left
-    else {
-        return
-    };
 
+    // if character does not need to wrap
+    else {
+        if(!isUpper) {str += 32};
+        return(String.fromCharCode(str - num));
+    };
 };
 
-let is_alpha = (char) => {
-    
-    return /^[A-Z]$/i.test(char);
-            
-}  
- // original_position - 26 + position int
+
+// Main function calls
 let main = () => {
-       
-let word = "aaa";
-let shift_amt = -1;
-let enc_word = [];
-create_alpha();
 
-for(let i = 0; i < word.length; i++) {
-    if(is_alpha(word[i])) {
+    // Test Cases *******************************************
 
-        if(word[i] == word[i].toLowerCase()) {
-            enc_word.push(shift_lower(word[i], shift_amt)); 
-        }
-        else{
-            enc_word.push(shift_upper(word[i], shift_amt));
+    // ("HELLO", 1) -> "IFMMP" shift right by 1
+    // ("HELLO", 2) -> "JGNNQ" shift right by 2
+    // ("HELLO", -1) -> "GDKKN" shift left by 1
+    // ("HELLO", 27) -> "IFMMP" shift right by 27
+    
+    // ("hello", 88) -> "rovvy" shift right by 88
+    // ("Hey How's it going?", -22) -> shift left by 22 "Lic Lsa'w mx ksmrk?"
+    // ("Let's wrap this bad boy around a few times!!!!!!", -68) -> shift left by 68 "Vod'c gbkz drsc lkn lyi kbyexn k pog dswoc!!!!!!"
+
+    
+    inputStr = "Let's wrap this bad boy around a few times!!!!!!";
+    inputNum = -68;
+
+    let pos;
+    let isUpper;
+    let rotArry = [];
+    let reAlpha = /^[a-z]$/i;
+
+    // loop through each character of string
+    for(let i = 0; i < inputStr.length; i++) {
+
+        // check for non alpha characters
+        if(!reAlpha.test(inputStr[i])) {
+           rotArry.push(inputStr[i]);
+           continue;
         };
-         
-    }
-    else {
-        enc_word.push(word[i])
-        continue;
-    };
-};
-console.log(enc_word)
 
+        // check case
+        isUpper = (inputStr[i] == inputStr[i].toUpperCase()) ? true : false;
+
+        // check for positive or negative input number
+        pos = (inputNum < 0) ? false : true;
+
+        // check if char will be shifted '+' or '-' then send to function to shift
+        if(pos) {
+            
+            rotArry.push(shiftCharRight(inputStr[i].charCodeAt(), inputNum, isUpper))
+        }
+        else {
+            rotArry.push(shiftCharLeft(inputStr[i].charCodeAt(), inputNum, isUpper))
+        };
+        
+       
+    };
+    console.log(rotArry.join(""))
 };
 
 main();
