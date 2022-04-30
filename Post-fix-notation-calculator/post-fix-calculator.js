@@ -1,3 +1,7 @@
+let isOperator = (string) => {
+    return Number.isNaN(parseInt(string)) ? true : false;
+}
+
 let doMath = (operator, num1, num2) => {
     switch(operator) {
         case '+':
@@ -17,8 +21,8 @@ let calculatePostFix = (equation) => {
     let numberCount = 0;
     equation.forEach((item) => {
 
-        // if operator
-        if(Number.isNaN(parseInt(item))) {
+        // Is an operator
+        if(isOperator(item)) {
             
             if(numberCount > 2) {
                 // do math on the 2 previous numbers(indexes) from the operator
@@ -39,8 +43,9 @@ let calculatePostFix = (equation) => {
                 equation.unshift(partialSolution);
                 calculatePostFix(equation);
             }; 
-        };
-        numberCount++;
+        }
+        // Not an operator
+        else {numberCount++;};
     });
 
     if(equation.length < 2) {return equation[0]};
@@ -48,13 +53,17 @@ let calculatePostFix = (equation) => {
 
 let main = () => {
 
-    // infix notation  ((4*3)+1)-2,     2+3*4,        3*4+2*5,         2+3*4+5,          10*(22-1008)/2+4409
-    let equations = ['1 3 4 * + 2 -',  '2 3 4 * +', '3 4 * 2 5 * +', '2 3 + 4 5 + *', '10 22 1008 - * 2 / 4409 +'];
-    let solutions = [11, 14, 22, 45, -521, 0];
-
-    for(let i = 0; i < equations.length; i++) {
-        console.assert(calculatePostFix(equations[i].split(' ')) === solutions[i]);
+    let infixArry = [
+        {equation: '1 3 4 * + 2 -', solution: 11},              // ((4*3)+1)-2
+        {equation: '2 3 4 * +', solution: 14},                  //  2+3*4
+        {equation: '3 4 * 2 5 * +', solution: 22},              // 3*4+2*5
+        {equation: '2 3 + 4 5 + *', solution: 45},              // 2+3*4+5
+        {equation: '10 22 1008 - * 2 / 4409 +', solution: -521} // 10*(22-1008)/2+4409
+    ]
+    for(let i = 0; i < infixArry.length; i++) {
+        console.assert(calculatePostFix(infixArry[i].equation.split(' ')) === infixArry[i].solution);
     };
+    
 };
 
 main();
