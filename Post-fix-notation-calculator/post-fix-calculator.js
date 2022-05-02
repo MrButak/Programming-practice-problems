@@ -19,26 +19,45 @@ let calculatePostFix = (equation) => {
 
     let partialSolution = 0;
     let numberCount = 0;
+    let operator = '';
+    let operandOne = 0;
+    let operandTwo = 0;
+
     equation.forEach((item) => {
 
         // Is an operator
         if(isOperator(item)) {
             
             if(numberCount > 2) {
+
+                operator = equation[3];
+                operandOne = parseInt(equation[1]);
+                operandTwo = parseInt(equation[2]);
+
                 // do math on the 2 previous numbers(indexes) from the operator
-                partialSolution = doMath(equation[3], parseInt(equation[1]), parseInt(equation[2]));
+                partialSolution = doMath(operator, operandOne, operandTwo);
+
                 // remove operator and 2 previous numbers
-                equation.splice([1], 3);
+                equation.splice(1, 3);
+
                 // add the solution from the above math to the beginning of copy
                 equation.unshift(partialSolution);
                 calculatePostFix(equation);
             }
 
             else {
+
+                operator = equation[2];
+                operandOne = parseInt(equation[0]);
+                operandTwo = parseInt(equation[1]);
+
                 // do math on the 2 previous numbers(indexes) from the operator
-                partialSolution = doMath(equation[2], parseInt(equation[0]), parseInt(equation[1]));
+                partialSolution = doMath(operator, operandOne, operandTwo);
                 // remove operator and 2 previous numbers
-                equation.splice([0], 3);
+
+                // equation.splice([0], 3);
+                equation.splice(0, 3);
+
                 // add the solution from the above math to the beginning of copy
                 equation.unshift(partialSolution);
                 calculatePostFix(equation);
